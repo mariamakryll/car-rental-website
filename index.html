@@ -27,30 +27,36 @@
       }
       .hero-content {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         min-height: 200px;
       }
       .hero-logo {
-        max-height: 200px;
+        max-height: 180px;
         width: auto;
         max-width: 100%;
         object-fit: contain;
+        margin-bottom: 20px;
       }
-      .hero-section h1 {
-        font-size: 2.5rem;
-        font-weight: 600;
+      .hero-message {
+        text-align: center;
+        max-width: 800px;
+      }
+      .hero-message h1 {
+        font-size: 2rem;
+        font-weight: 700;
         margin-bottom: 15px;
         letter-spacing: 1px;
-        display: none;
+        text-transform: uppercase;
       }
-      .hero-section p {
-        font-size: 1.1rem;
+      .hero-message p {
+        font-size: 1.2rem;
+        font-weight: 500;
         opacity: 0.95;
-        max-width: 600px;
-        margin: 0 auto;
-        display: none;
+        line-height: 1.6;
       }
+
       .container {
         max-width: 1200px;
         margin: 0 auto;
@@ -192,6 +198,10 @@
     <div class="hero-section">
       <div class="hero-content">
         <img src="logo.png" alt="Sun Rental Cars Logo" class="hero-logo">
+        <div class="hero-message">
+          <h1>Welcome to Sun Car Rentals</h1>
+          <p>We offer the best prices and services for car rentals in the island of Kalymnos</p>
+        </div>
       </div>
     </div>
     
