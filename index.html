@@ -288,6 +288,11 @@
         margin: 0 auto;
         padding: 0 20px;
       }
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
       .nav-brand {
         font-weight: 700;
         font-size: 1.3rem;
@@ -307,6 +312,30 @@
         height: 3px;
         background-color: #FF6600;
         transition: all 0.3s ease;
+      }
+      .language-switcher {
+        display: flex;
+        gap: 10px;
+        margin-right: 20px;
+      }
+      .lang-btn {
+        background: transparent;
+        border: 1px solid #FF6600;
+        color: #FF6600;
+        padding: 5px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .lang-btn:hover {
+        background: #FF6600;
+        color: #000;
+      }
+      .lang-btn.active {
+        background: #FF6600;
+        color: #000;
       }
       .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
@@ -403,16 +432,22 @@
   <body>
     <nav class="navbar">
       <div class="nav-container">
-        <div class="hamburger" id="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
+        <div class="nav-left">
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="language-switcher">
+            <button class="lang-btn active" id="lang-en">EN</button>
+            <button class="lang-btn" id="lang-gr">GR</button>
+          </div>
         </div>
         <div class="nav-menu" id="navMenu">
-          <a href="#home" class="nav-link">Home</a>
-          <a href="#about" class="nav-link">About Us</a>
-          <a href="#fleet" class="nav-link">Our Fleet</a>
-          <a href="#contact" class="nav-link">Contact</a>
+          <a href="#home" class="nav-link" id="nav-home">Home</a>
+          <a href="#about" class="nav-link" id="nav-about">About Us</a>
+          <a href="#fleet" class="nav-link" id="nav-fleet">Our Fleet</a>
+          <a href="#contact" class="nav-link" id="nav-contact">Contact</a>
         </div>
       </div>
     </nav>
@@ -426,8 +461,8 @@
       <div class="hero-content">
         <img src="logo.png" alt="Sun Rental Cars Logo" class="hero-logo">
         <div class="hero-message">
-          <h1>Welcome to Sun Car Rentals</h1>
-          <p>We offer the best prices and services for car rentals in the island of Kalymnos</p>
+          <h1 id="hero-title">Welcome to Sun Car Rentals</h1>
+          <p id="hero-text">We offer the best prices and services for car rentals in the island of Kalymnos</p>
         </div>
       </div>
     </div>
@@ -435,14 +470,14 @@
     <div class="container" id="about" style="margin-bottom: 50px;">
       <div class="row align-items-center">
         <div class="col-md-6">
-          <h2 style="color: #FF6600; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">About Sun Rental Car</h2>
-          <p style="color: #ccc; line-height: 1.8; margin-bottom: 20px;">
+          <h2 id="about-title" style="color: #FF6600; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">About Sun Rental Car</h2>
+          <p id="about-text1" style="color: #ccc; line-height: 1.8; margin-bottom: 20px;">
             <strong>SUN RENTAL CAR</strong> was created with the goal of offering you an easy, safe, and economical car rental experience in Kalymnos. With a modern fleet, immediate service, and competitive prices, we are by your side on every route of the island.
           </p>
-          <p style="color: #ccc; line-height: 1.8;">
+          <p id="about-text2" style="color: #ccc; line-height: 1.8;">
             Choose the ideal car for your vacation or business trip. Clean, fully maintained, and reliable vehicles for comfortable and safe transportation.
           </p>
-          <button class="btn-book" style="width: auto; padding: 12px 30px; margin-top: 20px;">Request Quote</button>
+          <button id="about-button" class="btn-book" style="width: auto; padding: 12px 30px; margin-top: 20px;">Request Quote</button>
         </div>
         <div class="col-md-6">
           <div style="background: linear-gradient(135deg, #FF6600 0%, #FF8C00 100%); padding: 40px; border-radius: 10px; text-align: center; color: white;">
@@ -479,7 +514,7 @@
     </div>
     
     <div class="container" id="fleet">
-      <h2 class="section-title">Our Fleet</h2>
+      <h2 class="section-title" id="fleet-title">Our Fleet</h2>
       <div class="row">
         <div class="col-md-4">
           <div class="car-card">
@@ -651,10 +686,10 @@
     
     <div class="footer" id="contact">
       <div class="container footer-info">
-        <h3 style="text-align: center;">Contact Us</h3>
-        <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px;">Professional Car Rental Services in Kalymnos</p>
+        <h3 id="contact-title" style="text-align: center;">Contact Us</h3>
+        <p id="contact-desc" style="text-align: center; font-size: 1.1rem; margin-bottom: 30px;">Professional Car Rental Services in Kalymnos</p>
         
-        <div class="footer-email" style="display: block; text-align: center;">📧 sunrentalcars@yahoo.com</div>
+        <div id="contact-email" class="footer-email" style="display: block; text-align: center;">📧 sunrentalcars@yahoo.com</div>
         
         <div class="footer-grid">
           <div class="footer-item">
@@ -675,7 +710,7 @@
         </div>
         
         <div class="footer-hours">
-          <h4 style="text-align: center; font-weight: 600; margin-bottom: 20px;">Business Hours</h4>
+          <h4 id="contact-hours" style="text-align: center; font-weight: 600; margin-bottom: 20px;">Business Hours</h4>
           <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
             <div>
               <strong>Monday - Friday:</strong> 8:00 AM - 6:00 PM
@@ -711,6 +746,98 @@
           navMenu.classList.remove('active');
         });
       });
+
+      // Language switcher functionality
+      const langEn = document.getElementById('lang-en');
+      const langGr = document.getElementById('lang-gr');
+
+      const translations = {
+        en: {
+          heroTitle: 'Welcome to Sun Car Rentals',
+          heroText: 'We offer the best prices and services for car rentals in the island of Kalymnos',
+          navHome: 'Home',
+          navAbout: 'About Us',
+          navFleet: 'Our Fleet',
+          navContact: 'Contact',
+          aboutTitle: 'About Sun Rental Car',
+          aboutText1: '<strong>SUN RENTAL CAR</strong> was created with the goal of offering you an easy, safe, and economical car rental experience in Kalymnos. With a modern fleet, immediate service, and competitive prices, we are by your side on every route of the island.',
+          aboutText2: 'Choose the ideal car for your vacation or business trip. Clean, fully maintained, and reliable vehicles for comfortable and safe transportation.',
+          aboutButton: 'Request Quote',
+          fleetTitle: 'Our Fleet',
+          contactTitle: 'Contact Us',
+          contactDesc: 'Professional Car Rental Services in Kalymnos',
+          contactEmail: '📧 sunrentalcars@yahoo.com',
+          contactHours: 'Business Hours'
+        },
+        gr: {
+          heroTitle: 'Καλωσορίσατε στα Sun Car Rentals',
+          heroText: 'Προσφέρουμε τις καλύτερες τιμές και υπηρεσίες για ενοικίαση αυτοκινήτων στο νησί της Καλυμνού',
+          navHome: 'Αρχική',
+          navAbout: 'Σχετικά με εμάς',
+          navFleet: 'Ο στόλος μας',
+          navContact: 'Επικοινωνία',
+          aboutTitle: 'Σχετικά με Sun Rental Car',
+          aboutText1: '<strong>SUN RENTAL CAR</strong> δημιουργήθηκε με στόχο να σας προσφέρουμε μια εύκολη, ασφαλή και οικονομική εμπειρία ενοικίασης αυτοκινήτου στην Κάλυμνο. Με σύγχρονο στόλο, άμεση εξυπηρέτηση και ανταγωνιστικές τιμές, είμαστε δίπλα σας σε κάθε διαδρομή του νησιού.',
+          aboutText2: 'Επιλέξτε το ιδανικό αυτοκίνητο για τις διακοπές ή το επαγγελματικό σας ταξίδι. Καθαρά, πλήρως συντηρημένα και αξιόπιστα οχήματα για άνετες και ασφαλείς μετακινήσεις.',
+          aboutButton: 'Ζητήστε προσφορά',
+          fleetTitle: 'Ο Στόλος μας',
+          contactTitle: 'Επικοινωνία',
+          contactDesc: 'Επαγγελματικές Υπηρεσίες Ενοικίασης Αυτοκινήτων στην Κάλυμνο',
+          contactEmail: '📧 sunrentalcars@yahoo.com',
+          contactHours: 'Ωράριο Λειτουργίας'
+        }
+      };
+
+      function switchLanguage(lang) {
+        const t = translations[lang];
+        
+        // Update hero section
+        document.getElementById('hero-title').textContent = t.heroTitle;
+        document.getElementById('hero-text').textContent = t.heroText;
+        
+        // Update navigation
+        document.getElementById('nav-home').textContent = t.navHome;
+        document.getElementById('nav-about').textContent = t.navAbout;
+        document.getElementById('nav-fleet').textContent = t.navFleet;
+        document.getElementById('nav-contact').textContent = t.navContact;
+        
+        // Update about section
+        const aboutTitle = document.getElementById('about-title');
+        if (aboutTitle) aboutTitle.textContent = t.aboutTitle;
+        
+        const aboutText1 = document.getElementById('about-text1');
+        if (aboutText1) aboutText1.innerHTML = t.aboutText1;
+        
+        const aboutText2 = document.getElementById('about-text2');
+        if (aboutText2) aboutText2.textContent = t.aboutText2;
+        
+        const aboutButton = document.getElementById('about-button');
+        if (aboutButton) aboutButton.textContent = t.aboutButton;
+        
+        // Update fleet section
+        const fleetTitle = document.getElementById('fleet-title');
+        if (fleetTitle) fleetTitle.textContent = t.fleetTitle;
+        
+        // Update contact section
+        const contactTitle = document.getElementById('contact-title');
+        if (contactTitle) contactTitle.textContent = t.contactTitle;
+        
+        const contactDesc = document.getElementById('contact-desc');
+        if (contactDesc) contactDesc.textContent = t.contactDesc;
+        
+        const contactEmail = document.getElementById('contact-email');
+        if (contactEmail) contactEmail.textContent = t.contactEmail;
+        
+        const contactHours = document.getElementById('contact-hours');
+        if (contactHours) contactHours.textContent = t.contactHours;
+        
+        // Update active state
+        langEn.classList.toggle('active', lang === 'en');
+        langGr.classList.toggle('active', lang === 'gr');
+      }
+
+      langEn.addEventListener('click', () => switchLanguage('en'));
+      langGr.addEventListener('click', () => switchLanguage('gr'));
 
       // Slideshow functionality
       const slides = document.querySelectorAll('.hero-slide');
