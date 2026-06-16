@@ -19,11 +19,53 @@
         color: #333;
       }
       .hero-section {
+        position: relative;
         background: linear-gradient(135deg, #FF6600 0%, #FF8C00 100%);
         color: white;
         padding: 80px 20px;
         text-align: center;
         border-bottom: 4px solid #000000;
+        overflow: hidden;
+      }
+      .hero-slideshow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+      .hero-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      .hero-slide.active {
+        opacity: 1;
+      }
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 102, 0, 0.85) 0%, rgba(255, 140, 0, 0.85) 100%);
+        z-index: 1;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 200px;
       }
       .hero-content {
         display: flex;
@@ -251,6 +293,28 @@
         text-transform: uppercase;
         letter-spacing: 1px;
       }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+        z-index: 1001;
+      }
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        transition: all 0.3s ease;
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
       .nav-menu {
         display: flex;
         gap: 30px;
@@ -266,6 +330,31 @@
       }
       .nav-link:hover {
         color: #FF6600;
+      }
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+        .nav-menu {
+          display: none;
+          position: fixed;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background: white;
+          flex-direction: column;
+          padding: 20px;
+          gap: 20px;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .nav-menu.active {
+          display: flex;
+        }
+        .nav-menu .nav-link {
+          text-align: center;
+          padding: 15px;
+          border-bottom: 1px solid #eee;
+        }
       }
       .features-section {
         background: #f8f9fa;
@@ -312,9 +401,15 @@
   <body>
     <nav class="navbar">
       <div class="nav-container">
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <div class="nav-brand">SUN RENTAL CAR</div>
-        <div class="nav-menu">
+        <div class="nav-menu" id="navMenu">
           <a href="#home" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About Us</a>
           <a href="#fleet" class="nav-link">Our Fleet</a>
           <a href="#contact" class="nav-link">Contact</a>
         </div>
@@ -322,6 +417,11 @@
     </nav>
 
     <div class="hero-section" id="home">
+      <div class="hero-slideshow">
+        <div class="hero-slide active" style="background-image: url('headline photos/IMG_0302.JPG');"></div>
+        <div class="hero-slide" style="background-image: url('headline photos/IMG_0303.JPG');"></div>
+      </div>
+      <div class="hero-overlay"></div>
       <div class="hero-content">
         <img src="logo.png" alt="Sun Rental Cars Logo" class="hero-logo">
         <div class="hero-message">
@@ -331,7 +431,7 @@
       </div>
     </div>
 
-    <div class="container" style="margin-bottom: 50px;">
+    <div class="container" id="about" style="margin-bottom: 50px;">
       <div class="row align-items-center">
         <div class="col-md-6">
           <h2 style="color: #FF6600; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">About Sun Rental Car</h2>
@@ -593,5 +693,35 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Hamburger menu toggle
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+
+      // Close menu when clicking a link
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+        });
+      });
+
+      // Slideshow functionality
+      const slides = document.querySelectorAll('.hero-slide');
+      let currentSlide = 0;
+
+      function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }
+
+      setInterval(nextSlide, 4000); // Change slide every 4 seconds
+    </script>
   </body>
 </html>
