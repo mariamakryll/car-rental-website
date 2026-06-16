@@ -19,11 +19,11 @@
         color: #333;
       }
       .hero-section {
-        background: linear-gradient(135deg, #5BA3C6 0%, #87CEEB 100%);
+        background: linear-gradient(135deg, #FF6600 0%, #FF8C00 100%);
         color: white;
         padding: 80px 20px;
         text-align: center;
-        border-bottom: 4px solid #F4B400;
+        border-bottom: 4px solid #000000;
       }
       .hero-content {
         display: flex;
@@ -66,7 +66,7 @@
         text-align: center;
         font-size: 2rem;
         font-weight: 600;
-        color: #5BA3C6;
+        color: #FF6600;
         margin-bottom: 40px;
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -82,20 +82,37 @@
       }
       .car-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 4px 16px rgba(91, 163, 198, 0.15);
-        border-color: #5BA3C6;
+        box-shadow: 0 4px 16px rgba(255, 102, 0, 0.15);
+        border-color: #FF6600;
       }
       .car-image {
         height: 200px;
-        background: linear-gradient(135deg, #5BA3C6 0%, #87CEEB 100%);
+        background-size: cover;
+        background-position: center;
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+      .car-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 102, 0, 0.3) 0%, rgba(255, 140, 0, 0.3) 100%);
+        z-index: 1;
+      }
+      .car-image span {
+        position: relative;
+        z-index: 2;
         color: white;
-        font-size: 3rem;
+        font-size: 2rem;
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 1px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
       }
       .car-details {
         padding: 25px;
@@ -115,7 +132,7 @@
       }
       .car-price {
         font-size: 1.4rem;
-        color: #5BA3C6;
+        color: #FF6600;
         font-weight: 700;
         margin-bottom: 15px;
       }
@@ -126,7 +143,7 @@
         line-height: 1.6;
       }
       .car-availability {
-        background-color: #F4B400;
+        background-color: #000000;
         color: white;
         padding: 4px 12px;
         border-radius: 12px;
@@ -136,7 +153,7 @@
         margin-bottom: 15px;
       }
       .btn-book {
-        background: linear-gradient(135deg, #5BA3C6 0%, #4A8FA8 100%);
+        background: linear-gradient(135deg, #FF6600 0%, #FF4500 100%);
         color: white;
         border: none;
         padding: 14px 28px;
@@ -150,13 +167,13 @@
         font-size: 0.9rem;
       }
       .btn-book:hover {
-        background: linear-gradient(135deg, #4A8FA8 0%, #3D7A8F 100%);
+        background: linear-gradient(135deg, #FF4500 0%, #CC3700 100%);
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(91, 163, 198, 0.3);
+        box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
       }
 
       .footer {
-        background: linear-gradient(135deg, #5BA3C6 0%, #4A8FA8 100%);
+        background: linear-gradient(135deg, #FF6600 0%, #FF4500 100%);
         color: white;
         padding: 60px 20px;
         margin-top: 50px;
@@ -212,7 +229,7 @@
       }
       .navbar {
         background: white;
-        border-bottom: 3px solid #F4B400;
+        border-bottom: 3px solid #FF6600;
         padding: 15px 0;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         position: sticky;
@@ -230,7 +247,7 @@
       .nav-brand {
         font-weight: 700;
         font-size: 1.3rem;
-        color: #5BA3C6;
+        color: #FF6600;
         text-transform: uppercase;
         letter-spacing: 1px;
       }
@@ -248,7 +265,7 @@
         letter-spacing: 0.5px;
       }
       .nav-link:hover {
-        color: #5BA3C6;
+        color: #FF6600;
       }
       .features-section {
         background: #f8f9fa;
@@ -280,7 +297,7 @@
       }
       .feature-title {
         font-weight: 600;
-        color: #5BA3C6;
+        color: #FF6600;
         margin-bottom: 10px;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -317,7 +334,7 @@
     <div class="container" style="margin-bottom: 50px;">
       <div class="row align-items-center">
         <div class="col-md-6">
-          <h2 style="color: #5BA3C6; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">About Sun Rental Car</h2>
+          <h2 style="color: #FF6600; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">About Sun Rental Car</h2>
           <p style="color: #555; line-height: 1.8; margin-bottom: 20px;">
             <strong>SUN RENTAL CAR</strong> was created with the goal of offering you an easy, safe, and economical car rental experience in Kalymnos. With a modern fleet, immediate service, and competitive prices, we are by your side on every route of the island.
           </p>
@@ -327,7 +344,7 @@
           <button class="btn-book" style="width: auto; padding: 12px 30px; margin-top: 20px;">Request Quote</button>
         </div>
         <div class="col-md-6">
-          <div style="background: linear-gradient(135deg, #5BA3C6 0%, #87CEEB 100%); padding: 40px; border-radius: 10px; text-align: center; color: white;">
+          <div style="background: linear-gradient(135deg, #FF6600 0%, #FF8C00 100%); padding: 40px; border-radius: 10px; text-align: center; color: white;">
             <h3 style="font-weight: 700; margin-bottom: 20px; text-transform: uppercase;">Modern Fleet</h3>
             <p style="margin-bottom: 0;">Well-maintained vehicles for safe and comfortable travel</p>
           </div>
@@ -365,7 +382,8 @@
       <div class="row">
         <div class="col-md-4">
           <div class="car-card">
-            <div class="car-image">CITROËN C3</div>
+            <div class="car-image" style="background-image: url('photos/IMG_0302.JPG');">
+              <span>CITROËN C3</span>
             <div class="car-details">
               <h3 class="car-title">Citroën C3</h3>
               <p class="car-year">2019-2021 Models</p>
@@ -378,7 +396,8 @@
         </div>
         <div class="col-md-4">
           <div class="car-card">
-            <div class="car-image">PEUGEOT 2008</div>
+            <div class="car-image" style="background-image: url('photos/IMG_0303.JPG');">
+              <span>PEUGEOT 2008</span>
             <div class="car-details">
               <h3 class="car-title">Peugeot 2008</h3>
               <p class="car-year">2019-2021 Models</p>
@@ -391,7 +410,8 @@
         </div>
         <div class="col-md-4">
           <div class="car-card">
-            <div class="car-image">SKODA CITY GO</div>
+            <div class="car-image" style="background-image: url('photos/IMG_0304.JPG');">
+              <span>SKODA CITY GO</span>
             <div class="car-details">
               <h3 class="car-title">Skoda City Go</h3>
               <p class="car-year">2019-2021 Models</p>
@@ -404,7 +424,8 @@
         </div>
         <div class="col-md-4">
           <div class="car-card">
-            <div class="car-image">RENAULT TWINGO</div>
+            <div class="car-image" style="background-image: url('photos/IMG_0305.JPG');">
+              <span>RENAULT TWINGO</span>
             <div class="car-details">
               <h3 class="car-title">Renault Twingo</h3>
               <p class="car-year">2019-2021 Models</p>
@@ -417,7 +438,8 @@
         </div>
         <div class="col-md-4">
           <div class="car-card">
-            <div class="car-image">SUZUKI BALENO</div>
+            <div class="car-image" style="background-image: url('photos/IMG_0306.JPG');">
+              <span>SUZUKI BALENO</span>
             <div class="car-details">
               <h3 class="car-title">Suzuki Baleno</h3>
               <p class="car-year">2019-2021 Models</p>
