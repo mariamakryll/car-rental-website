@@ -21,7 +21,7 @@
       .hero-section {
         background: linear-gradient(135deg, #5BA3C6 0%, #87CEEB 100%);
         color: white;
-        padding: 60px 20px;
+        padding: 80px 20px;
         text-align: center;
         border-bottom: 4px solid #F4B400;
       }
@@ -86,13 +86,13 @@
         border-color: #5BA3C6;
       }
       .car-image {
-        height: 180px;
+        height: 200px;
         background: linear-gradient(135deg, #5BA3C6 0%, #87CEEB 100%);
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
-        font-size: 2.5rem;
+        font-size: 3rem;
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -156,10 +156,9 @@
       }
 
       .footer {
-        background: #5BA3C6;
+        background: linear-gradient(135deg, #5BA3C6 0%, #4A8FA8 100%);
         color: white;
-        padding: 50px 20px;
-        text-align: center;
+        padding: 60px 20px;
         margin-top: 50px;
       }
       .footer h3 {
@@ -170,26 +169,45 @@
         letter-spacing: 1px;
       }
       .footer-info {
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
       }
-      .footer p {
-        margin: 12px 0;
-        font-size: 1rem;
-        font-weight: 500;
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+      .footer-item {
+        text-align: center;
+      }
+      .footer-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      .footer-label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .footer-value {
+        font-size: 1.1rem;
+        opacity: 0.95;
       }
       .footer-email {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         font-weight: 700;
         margin: 20px 0;
-        padding: 10px;
-        background: rgba(255,255,255,0.1);
-        border-radius: 5px;
+        padding: 15px 25px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 8px;
         display: inline-block;
+        letter-spacing: 0.5px;
       }
       .footer-hours {
-        margin-top: 25px;
-        padding-top: 25px;
+        margin-top: 30px;
+        padding-top: 30px;
         border-top: 1px solid rgba(255,255,255,0.3);
       }
       .navbar {
@@ -296,6 +314,27 @@
       </div>
     </div>
 
+    <div class="container" style="margin-bottom: 50px;">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h2 style="color: #5BA3C6; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">About Sun Rental Car</h2>
+          <p style="color: #555; line-height: 1.8; margin-bottom: 20px;">
+            <strong>SUN RENTAL CAR</strong> was created with the goal of offering you an easy, safe, and economical car rental experience in Kalymnos. With a modern fleet, immediate service, and competitive prices, we are by your side on every route of the island.
+          </p>
+          <p style="color: #555; line-height: 1.8;">
+            Choose the ideal car for your vacation or business trip. Clean, fully maintained, and reliable vehicles for comfortable and safe transportation.
+          </p>
+          <button class="btn-book" style="width: auto; padding: 12px 30px; margin-top: 20px;">Request Quote</button>
+        </div>
+        <div class="col-md-6">
+          <div style="background: linear-gradient(135deg, #5BA3C6 0%, #87CEEB 100%); padding: 40px; border-radius: 10px; text-align: center; color: white;">
+            <h3 style="font-weight: 700; margin-bottom: 20px; text-transform: uppercase;">Modern Fleet</h3>
+            <p style="margin-bottom: 0;">Well-maintained vehicles for safe and comfortable travel</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="features-section">
       <div class="features-grid">
         <div class="feature-card">
@@ -394,17 +433,45 @@
     
     <div class="footer" id="contact">
       <div class="container footer-info">
-        <h3>Contact Us</h3>
-        <p>Professional Car Rental Services</p>
-        <div class="footer-email">📧 sunrentalcars@yahoo.com</div>
-        <p>Quality Vehicles • Competitive Rates • Exceptional Service</p>
-        <div class="footer-hours">
-          <p><strong>Business Hours:</strong></p>
-          <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-          <p>Saturday: 9:00 AM - 2:00 PM</p>
-          <p>Sunday: Closed</p>
+        <h3 style="text-align: center;">Contact Us</h3>
+        <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px;">Professional Car Rental Services in Kalymnos</p>
+        
+        <div class="footer-email" style="display: block; text-align: center;">📧 sunrentalcars@yahoo.com</div>
+        
+        <div class="footer-grid">
+          <div class="footer-item">
+            <div class="footer-icon">📞</div>
+            <div class="footer-label">Phone</div>
+            <div class="footer-value">Available for inquiries</div>
+          </div>
+          <div class="footer-item">
+            <div class="footer-icon">📍</div>
+            <div class="footer-label">Location</div>
+            <div class="footer-value">Kalymnos Island, Greece</div>
+          </div>
+          <div class="footer-item">
+            <div class="footer-icon">🕐</div>
+            <div class="footer-label">Service</div>
+            <div class="footer-value">24/7 Available</div>
+          </div>
         </div>
-        <p style="margin-top: 25px; font-size: 0.9rem;">&copy; 2024 Sun Rental Cars. All rights reserved.</p>
+        
+        <div class="footer-hours">
+          <h4 style="text-align: center; font-weight: 600; margin-bottom: 20px;">Business Hours</h4>
+          <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+            <div>
+              <strong>Monday - Friday:</strong> 8:00 AM - 6:00 PM
+            </div>
+            <div>
+              <strong>Saturday:</strong> 9:00 AM - 2:00 PM
+            </div>
+            <div>
+              <strong>Sunday:</strong> Closed
+            </div>
+          </div>
+        </div>
+        
+        <p style="text-align: center; margin-top: 30px; font-size: 0.9rem; opacity: 0.9;">&copy; 2024 Sun Rental Cars. All rights reserved.</p>
       </div>
     </div>
     
