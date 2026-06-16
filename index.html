@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#667eea" />
+    <meta name="theme-color" content="#5BA3C6" />
     <meta
       name="description"
       content="Car rental website - find and book your perfect car"
@@ -13,152 +13,253 @@
     <style>
       body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f8f9fa;
+        background-color: #ffffff;
         margin: 0;
         padding: 0;
+        color: #333;
       }
       .hero-section {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #5BA3C6 0%, #87CEEB 100%);
         color: white;
-        padding: 80px 20px;
+        padding: 100px 20px;
         text-align: center;
+        border-bottom: 4px solid #F4B400;
       }
       .hero-section h1 {
-        font-size: 3rem;
-        font-weight: bold;
-        margin-bottom: 20px;
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
       }
       .hero-section p {
-        font-size: 1.2rem;
-        opacity: 0.9;
+        font-size: 1.1rem;
+        opacity: 0.95;
+        max-width: 600px;
+        margin: 0 auto;
       }
       .container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 50px 20px;
+      }
+      .section-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 600;
+        color: #5BA3C6;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
       }
       .car-card {
         background: white;
-        border-radius: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
         margin-bottom: 30px;
       }
       .car-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 16px rgba(91, 163, 198, 0.15);
+        border-color: #5BA3C6;
       }
       .car-image {
-        height: 200px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        height: 180px;
+        background: linear-gradient(135deg, #5BA3C6 0%, #87CEEB 100%);
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
-        font-size: 3rem;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
       .car-details {
-        padding: 20px;
+        padding: 25px;
       }
       .car-title {
-        font-size: 1.5rem;
-        font-weight: bold;
+        font-size: 1.3rem;
+        font-weight: 600;
         color: #333;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+      .car-year {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 12px;
+        font-style: italic;
       }
       .car-price {
-        font-size: 1.25rem;
-        color: #667eea;
-        font-weight: bold;
+        font-size: 1.4rem;
+        color: #5BA3C6;
+        font-weight: 700;
         margin-bottom: 15px;
       }
       .car-features {
-        color: #666;
-        font-size: 0.9rem;
+        color: #555;
+        font-size: 0.95rem;
         margin-bottom: 20px;
+        line-height: 1.6;
+      }
+      .car-availability {
+        background-color: #F4B400;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 15px;
       }
       .btn-book {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #5BA3C6 0%, #4A8FA8 100%);
         color: white;
         border: none;
-        padding: 12px 25px;
-        border-radius: 25px;
-        font-weight: bold;
+        padding: 14px 28px;
+        border-radius: 6px;
+        font-weight: 600;
         cursor: pointer;
         width: 100%;
-        transition: transform 0.2s;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.9rem;
       }
       .btn-book:hover {
-        transform: scale(1.05);
+        background: linear-gradient(135deg, #4A8FA8 0%, #3D7A8F 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(91, 163, 198, 0.3);
       }
       .navbar {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: white;
+        border-bottom: 3px solid #F4B400;
         padding: 15px 0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       }
       .navbar-brand {
-        color: white !important;
-        font-weight: bold;
-        font-size: 1.5rem;
+        color: #5BA3C6 !important;
+        font-weight: 700;
+        font-size: 1.8rem;
+        letter-spacing: 1px;
       }
       .nav-link {
-        color: white !important;
-        margin: 0 10px;
+        color: #333 !important;
+        margin: 0 15px;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+      .nav-link:hover {
+        color: #5BA3C6 !important;
+      }
+      .footer {
+        background: #5BA3C6;
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+        margin-top: 50px;
+      }
+      .footer p {
+        margin: 5px 0;
+        font-size: 0.95rem;
       }
     </style>
   </head>
   <body>
     <nav class="navbar">
       <div class="container">
-        <a class="navbar-brand">🚗 Car Rental</a>
+        <a class="navbar-brand">SUN RENTAL CARS</a>
         <div>
           <a class="nav-link">Home</a>
-          <a class="nav-link">Cars</a>
+          <a class="nav-link">Our Fleet</a>
           <a class="nav-link">Contact</a>
         </div>
       </div>
     </nav>
     
     <div class="hero-section">
-      <h1>Find Your Perfect Car</h1>
-      <p>Premium car rental service at affordable prices</p>
+      <h1>Professional Car Rental Services</h1>
+      <p>Quality vehicles for business and personal use. Competitive rates with exceptional service.</p>
     </div>
     
     <div class="container">
+      <h2 class="section-title">Our Fleet</h2>
       <div class="row">
         <div class="col-md-4">
           <div class="car-card">
-            <div class="car-image">🚗</div>
+            <div class="car-image">CITROËN C3</div>
             <div class="car-details">
-              <h3 class="car-title">Economy Car</h3>
-              <p class="car-price">$35/day</p>
-              <p class="car-features">5 seats • Automatic • A/C</p>
-              <button class="btn-book">Book Now</button>
+              <h3 class="car-title">Citroën C3</h3>
+              <p class="car-year">2019-2021 Models</p>
+              <div class="car-availability">5 Available</div>
+              <p class="car-price">€35/day</p>
+              <p class="car-features">Compact economy car • Manual/Automatic • Air Conditioning • 5 Seats • Ideal for city driving</p>
+              <button class="btn-book">Request Booking</button>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="car-card">
-            <div class="car-image">🚙</div>
+            <div class="car-image">PEUGEOT 2008</div>
             <div class="car-details">
-              <h3 class="car-title">SUV</h3>
-              <p class="car-price">$55/day</p>
-              <p class="car-features">7 seats • Automatic • A/C</p>
-              <button class="btn-book">Book Now</button>
+              <h3 class="car-title">Peugeot 2008</h3>
+              <p class="car-year">2019-2021 Models</p>
+              <div class="car-availability">1 Available</div>
+              <p class="car-price">€45/day</p>
+              <p class="car-features">Compact SUV • Automatic • Air Conditioning • 5 Seats • Perfect for small families</p>
+              <button class="btn-book">Request Booking</button>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="car-card">
-            <div class="car-image">🏎️</div>
+            <div class="car-image">SKODA CITY GO</div>
             <div class="car-details">
-              <h3 class="car-title">Luxury Car</h3>
-              <p class="car-price">$85/day</p>
-              <p class="car-features">4 seats • Automatic • Premium</p>
-              <button class="btn-book">Book Now</button>
+              <h3 class="car-title">Skoda City Go</h3>
+              <p class="car-year">2019-2021 Models</p>
+              <div class="car-availability">1 Available</div>
+              <p class="car-price">€40/day</p>
+              <p class="car-features">City car • Manual • Air Conditioning • 4 Seats • Fuel efficient urban driving</p>
+              <button class="btn-book">Request Booking</button>
             </div>
           </div>
         </div>
+        <div class="col-md-4">
+          <div class="car-card">
+            <div class="car-image">RENAULT TWINGO</div>
+            <div class="car-details">
+              <h3 class="car-title">Renault Twingo</h3>
+              <p class="car-year">2019-2021 Models</p>
+              <div class="car-availability">1 Available</div>
+              <p class="car-price">€30/day</p>
+              <p class="car-features">Mini car • Manual • Air Conditioning • 4 Seats • Perfect for solo travelers</p>
+              <button class="btn-book">Request Booking</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="car-card">
+            <div class="car-image">SUZUKI BALENO</div>
+            <div class="car-details">
+              <h3 class="car-title">Suzuki Baleno</h3>
+              <p class="car-year">2019-2021 Models</p>
+              <div class="car-availability">2 Available</div>
+              <p class="car-price">€38/day</p>
+              <p class="car-features">Compact hatchback • Manual/Automatic • Air Conditioning • 5 Seats • Reliable and spacious</p>
+              <button class="btn-book">Request Booking</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <div class="container">
+        <p>&copy; 2024 Sun Rental Cars. Professional Car Rental Services</p>
+        <p>Contact: sunrentalcars@yahoo.com | Quality Vehicles, Competitive Rates</p>
       </div>
     </div>
     
