@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Email configuration (you should set these as environment variables)
-SMTP_SERVER = "smtp.gmail.com"  # or your email provider
+SMTP_SERVER = "smtp.mail.yahoo.com"  # Yahoo SMTP server
 SMTP_PORT = 587
 EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS", "sunrentalcars@yahoo.com")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "")  # Use app-specific password

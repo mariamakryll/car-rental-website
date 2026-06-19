@@ -934,25 +934,45 @@
           message: document.getElementById('message').value
         };
 
-        // Send to backend (for now, we'll simulate success)
-        // In production, this would call your Python backend
-        console.log('Booking data:', formData);
-        
-        // Simulate backend call
-        setTimeout(() => {
-          document.getElementById('bookingFormContent').style.display = 'none';
-          document.getElementById('successMessage').style.display = 'block';
-          
-          // Close modal after 3 seconds
-          setTimeout(() => {
-            closeModal();
-            // Reset for next use
+        // Send to backend
+        fetch('http://localhost:5000/api/book', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            document.getElementById('bookingFormContent').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            // Close modal after 3 seconds
             setTimeout(() => {
-              document.getElementById('bookingFormContent').style.display = 'block';
-              document.getElementById('successMessage').style.display = 'none';
-            }, 500);
+              closeModal();
+              setTimeout(() => {
+                document.getElementById('bookingFormContent').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+              }, 500);
+            }, 3000);
+          } else {
+            throw new Error(data.error || 'Booking failed');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          document.getElementById('bookingFormContent').style.display = 'none';
+          document.getElementById('errorMessage').style.display = 'block';
+          document.getElementById('successMessage').style.display = 'none';
+          
+          // Show form again after 3 seconds
+          setTimeout(() => {
+            document.getElementById('bookingFormContent').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
           }, 3000);
-        }, 1000);
+        });
       });
 
       // Hamburger menu toggle
