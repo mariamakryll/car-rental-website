@@ -16,6 +16,12 @@ EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS", "sunrentalcars@yahoo.com")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "")  # Use app-specific password
 RECIPIENT_EMAIL = "sunrentalcars@yahoo.com"
 
+@app.route('/api/stripe-config', methods=['GET'])
+def stripe_config():
+    """Return Stripe public key for frontend"""
+    stripe_key = os.environ.get("STRIPE_PUBLISHABLE_KEY", "")
+    return jsonify({'publicKey': stripe_key})
+
 @app.route('/api/book', methods=['POST'])
 def book_car():
     try:

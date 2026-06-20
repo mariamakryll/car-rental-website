@@ -382,6 +382,23 @@
         font-size: 1rem;
         padding: 15px;
       }
+      .days_calculation {
+        background: #2a2a2a;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        border-left: 3px solid #FF6600;
+      }
+      .days_calculation label {
+        color: #FF6600;
+        font-weight: 600;
+      }
+      .days_calculation span {
+        color: #fff;
+        font-weight: 700;
+      }
       .navbar {
         background: #000000;
         border-bottom: 3px solid #FF6600;
@@ -865,6 +882,13 @@
                 <input type="tel" id="phone" name="phone" required>
               </div>
               <div class="form-group">
+                <label for="car_details">Car Details *</label>
+                <input type="hidden" id="car_id" name="car_id">
+                <input type="text" id="car_name" name="car_name" readonly>
+                <input type="text" id="car_year" name="car_year" readonly>
+                <input type="text" id="car_price" name="car_price" readonly>
+              </div>
+              <div class="form-group">
                 <label for="pickup_date">Pickup Date *</label>
                 <input type="date" id="pickup_date" name="pickup_date" required>
               </div>
@@ -872,11 +896,15 @@
                 <label for="return_date">Return Date *</label>
                 <input type="date" id="return_date" name="return_date" required>
               </div>
+              <div class="form-group" id="days_calculation">
+                <label>Number of Days: <span id="total_days">0</span></label>
+                <label>Total Amount: <span id="total_amount">€0</span></label>
+              </div>
               <div class="form-group">
                 <label for="message">Additional Message</label>
                 <textarea id="message" name="message" rows="3"></textarea>
               </div>
-              <button type="submit" class="submit-btn">Submit Booking Request</button>
+              <button type="submit" class="submit-btn" id="payButton">Proceed to Payment</button>
             </form>
           </div>
         </div>
@@ -891,6 +919,50 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+    // Set up Formspree form ID (you need to create one at https://formspree.io)
+    const FORMSPREE_FORM_ID = "YOUR_FORMSPREE_FORM_ID_HERE";
+    
+    // Stripe setup - will be loaded from backend
+    let stripe = null;
+    let stripePublicKey = null;
+    
+    // Load Stripe public key from backend
+    fetch('/api/stripe-config')
+      .then(response => response.json())
+      .then(data => {
+        if (data.publicKey) {
+          stripePublicKey = data.publicKey;
+          stripe = Stripe(stripePublicKey);
+        }
+      })
+      .catch(error => {
+        console.log('Stripe config not available, using fallback');
+      });
+    
+    // Calculate rental days and total amount
+    function calculateTotal() {
+      const pickupDate = new Date(document.getElementById('pickup_date').value);
+      const returnDate = new Date(document.getElementById('return_date').value);
+      const pricePerDay = parseInt(document.getElementById('car_price').value) || 0;
+      
+      if (pickupDate && returnDate && pickupDate < returnDate) {
+        const diffTime = Math.abs(returnDate - pickupDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const total = diffDays * pricePerDay;
+        
+        document.getElementById('total_days').textContent = diffDays;
+        document.getElementById('total_amount').textContent = '€' + total;
+        return total;
+      }
+      return 0;
+    }
+    
+    // Listen for date changes to recalculate total
+    document.getElementById('pickup_date').addEventListener('change', calculateTotal);
+    document.getElementById('return_date').addEventListener('change', calculateTotal);
+    </script>
     <script>
       // Modal functions
       function openBookingForm(carId, carName, carYear, carPrice) {
@@ -927,29 +999,51 @@
           name: document.getElementById('name').value,
           email: document.getElementById('email').value,
           phone: document.getElementById('phone').value,
-          car_id: document.getElementById('selectedCar').dataset.carId,
-          car_name: document.getElementById('modal-car-name').textContent,
+          car_id: document.getElementById('car_id').value,
+          car_name: document.getElementById('car_name').value,
+          car_year: document.getElementById('car_year').value,
           pickup_date: document.getElementById('pickup_date').value,
           return_date: document.getElementById('return_date').value,
-          message: document.getElementById('message').value
+          message: document.getElementById('message').value,
+          total_amount: calculateTotal()
         };
-
-        // Send to backend
-        fetch('http://localhost:5000/api/book', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            document.getElementById('bookingFormContent').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('errorMessage').style.display = 'none';
-            
-            // Close modal after 3 seconds
+        
+        // Validate form
+        if (formData.total_amount <= 0) {
+          alert('Please select valid pickup and return dates');
+          return;
+        }
+        
+        // Stripe Checkout redirect
+        if (stripe) {
+          stripe.redirectToCheckout({
+            lineItems: [{
+              price: formData.total_amount * 100, // Convert to cents
+              quantity: 1,
+              currency: 'eur',
+            }],
+            mode: 'payment',
+            successUrl: window.location.href + '?payment=success',
+            cancelUrl: window.location.href + '?payment=cancelled',
+            customerEmail: formData.email,
+            metadata: {
+              car_id: formData.car_id,
+              car_name: formData.car_name,
+              pickup_date: formData.pickup_date,
+              return_date: formData.return_date,
+              name: formData.name,
+              phone: formData.phone,
+              message: formData.message
+            }
+          }).then(function (result) {
+            // This will redirect to Stripe Checkout
+          }).catch(function (error) {
+            console.error('Error:', error);
+            alert('Payment initialization failed. Please try again.');
+          });
+        } else {
+          alert('Payment system loading. Please try again in a moment.');
+        }
             setTimeout(() => {
               closeModal();
               setTimeout(() => {
